@@ -8,7 +8,8 @@ const createContact = (req, res) => {
     console.log(req.body);
     const {name, email, phone} = req.body;
     if(!name || !email || !phone){
-        return res.status(400).json({msg: 'Please enter all fields'});
+        res.status(400);
+        throw new Error('All fields must be filled');
     }
     res.send('Create new contact');
 }
