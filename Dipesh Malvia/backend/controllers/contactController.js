@@ -5,6 +5,7 @@ const getContacts = (req, res) => {
 
 
 const createContact = (req, res) => {
+    console.log(req.body);
     res.send('Create new contact');
 }
 
