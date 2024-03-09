@@ -53,5 +53,21 @@ router.patch('/:id', async (req, res) => {
 
 })
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const alien = await Alien.findById(req.params.id);
+        
+        if (!alien) {
+            return res.status(404).json({ error: 'Alien not found' });
+        }
+
+        const removedAlien = await alien.deleteOne();
+        res.json({ message: 'Alien successfully deleted', removedAlien });
+    } catch (err) {
+        console.error(err); // Log the error for debugging purposes
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 module.exports = router
