@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Alien = require('../models/alien');
 
 router.get('/', async (req, res)=>{
     try{
-        res.send('Hello from aliens')
+        const aliens = await Alien.find()
+        res.json(aliens)
     }
     catch{
         res.send('Error ' + err)
